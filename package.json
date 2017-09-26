@@ -1,0 +1,18 @@
+{
+  "name": "simple-sequelize",
+  "version": "1.0.0",
+  "description": "a very simple server with sequelize",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gaspaonrocks",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "faker": "^4.1.0",
+    "sequelize": "^4.10.0",
+    "sqlite3": "^3.1.11"
+  }
+}
