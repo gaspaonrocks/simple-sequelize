@@ -4,7 +4,7 @@
   "description": "a very simple server with sequelize",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "author": "gaspaonrocks",
   "license": "ISC",
