@@ -30,26 +30,29 @@ module.exports = {
   },
 
   create(req, res, next) {
-    // the faker module doing magic
-    let user = {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName()
-    }
-
     // sequelize need to return a value after a promise
     // first you sync the table 'db.Model'
     return User.sync()
       .then(() => {
         // you return the creation of an entry
         return User.create(req.body)
-          .then((newUser) => res.json(newUser))
+          .then(newUser => res.json(newUser))
           .catch(e => console.error('error creating entry: ', e))
       })
       .catch(e => console.error('error syncing with db: ', e))
   },
 
-  update(req,res,next) {
-
+  update(req, res, next) {
+    return User.sync()
+      .then(() => {
+        return User.findById(req.params.param1)
+          .then(user => {
+            user.update(req.body)
+              .then(updatedUser => res.json(`user updated, new value is ${updatedUser}`))
+              .catch(e => re.json(`error: ${e}`))
+          })
+          .catch(e => res.json(`error syncing with db: ${e}`))
+      })
   },
 
 
@@ -59,10 +62,10 @@ module.exports = {
         // find a user
         return User.findById(req.params.param1)
           .then(user => {
-            // then KIIL IT !
+            // then KILL IT !
             return user.destroy()
           })
-          .then((user) => res.send(console.log(`${user} element destroyed !`)))
+          .then((user) => res.send(console.log(`${user} destroyed !`)))
           .catch(e => console.error('something went wrong: ', e))
       })
       .catch(e => console.error('something went wrong: ', e))
