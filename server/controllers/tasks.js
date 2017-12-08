@@ -4,6 +4,7 @@
 // since they're all attached to it
 // you just import the index file
 let Task = require('../models').Task;
+let User = require('../models').User;
 
 module.exports = {
   list(req, res, next) {
@@ -11,7 +12,7 @@ module.exports = {
     return Task.sync()
       .then(() => {
         // you return all the entries
-        return Task.findAll()
+        return Task.findAll({ include: [User] })
           .then(tasks => res.json(tasks))
           .catch(e => console.error('error finding entries: ', e))
       })
@@ -22,7 +23,7 @@ module.exports = {
     return Task.sync()
       .then(() => {
         // you return all the entries
-        return Task.findById(req.params.param1)
+        return Task.findById(req.params.param1, { include: [User] })
           .then(task => res.json(task))
           .catch(e => console.error('error finding entries: ', e))
       })
