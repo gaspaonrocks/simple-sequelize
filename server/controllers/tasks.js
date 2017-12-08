@@ -3,28 +3,27 @@
 // import the db object with all the models;
 // since they're all attached to it
 // you just import the index file
-let User = require('../models').User;
 let Task = require('../models').Task;
 
 module.exports = {
   list(req, res, next) {
     // sync the db...
-    return User.sync()
+    return Task.sync()
       .then(() => {
         // you return all the entries
-        return User.findAll({ include: [Task] })
-          .then(users => res.json(users))
+        return Task.findAll()
+          .then(tasks => res.json(tasks))
           .catch(e => console.error('error finding entries: ', e))
       })
       .catch(e => console.error('error syncing with db: ', e))
   },
 
   find(req, res, next) {
-    return User.sync()
+    return Task.sync()
       .then(() => {
         // you return all the entries
-        return User.findById(req.params.param1, { include: [Task] })
-          .then(user => res.json(user))
+        return Task.findById(req.params.param1)
+          .then(task => res.json(task))
           .catch(e => console.error('error finding entries: ', e))
       })
       .catch(e => console.error('error syncing with db: ', e))
@@ -33,23 +32,23 @@ module.exports = {
   create(req, res, next) {
     // sequelize need to return a value after a promise
     // first you sync the table 'db.Model'
-    return User.sync()
+    return Task.sync()
       .then(() => {
         // you return the creation of an entry
-        return User.create(req.body)
-          .then(newUser => res.json(newUser))
+        return Task.create(req.body)
+          .then(newTask => res.json(newTask))
           .catch(e => console.error('error creating entry: ', e))
       })
       .catch(e => console.error('error syncing with db: ', e))
   },
 
   update(req, res, next) {
-    return User.sync()
+    return Task.sync()
       .then(() => {
-        return User.findById(req.params.param1)
-          .then(user => {
-            user.update(req.body)
-              .then(updatedUser => res.json(`user updated, new value is ${updatedUser}`))
+        return Task.findById(req.params.param1)
+          .then(task => {
+            task.update(req.body)
+              .then(updatedTask => res.json(`Task updated, new value is ${updatedTask}`))
               .catch(e => re.json(`error: ${e}`))
           })
           .catch(e => res.json(`error syncing with db: ${e}`))
@@ -57,15 +56,15 @@ module.exports = {
   },
 
   delete(req, res, next) {
-    return User.sync()
+    return Task.sync()
       .then(() => {
         // find a user
-        return User.findById(req.params.param1)
-          .then(user => {
+        return Task.findById(req.params.param1)
+          .then(task => {
             // then KILL IT !
-            return user.destroy()
+            return task.destroy()
           })
-          .then((user) => res.send(console.log(`${user} destroyed !`)))
+          .then((task) => res.send(console.log(`${task} destroyed !`)))
           .catch(e => console.error('something went wrong: ', e))
       })
       .catch(e => console.error('something went wrong: ', e))

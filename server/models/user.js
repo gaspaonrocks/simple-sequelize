@@ -7,7 +7,11 @@ module.exports = function (sequelize, DataTypes) {
   let User = sequelize.define('User', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING
-  })
+  });
 
-  return User
+  User.associate = (models) => {
+    models.User.hasMany(models.Task);
+  };
+
+  return User;
 }
