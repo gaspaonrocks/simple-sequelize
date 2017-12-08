@@ -12,7 +12,7 @@ let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
-// routing API with method called
+// routing API with path to controllers folder
 app.use('/api', router.mapper('./server/controllers'));
 
 let server = app.listen(9999, () => {

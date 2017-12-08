@@ -5,10 +5,6 @@
 // you just import the index file
 let User = require('../models').User;
 
-// super nice module that let you fake data
-// go check their github for more methods !
-let faker = require('faker');
-
 module.exports = {
   list(req, res, next) {
     // sync the db...
@@ -55,7 +51,7 @@ module.exports = {
   update(req,res,next) {
 
   },
-  
+
 
   delete(req, res, next) {
     return User.sync()
