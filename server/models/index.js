@@ -47,6 +47,6 @@ db.Sequelize = Sequelize;
 // test the connection when server is running
 db.sequelize.authenticate()
   .then(() => console.log('success'))
-  .catch(e => console.error('error connection: ', e));
+  .catch(e => console.error(`error connection: ${e}`));
 
 module.exports = db;

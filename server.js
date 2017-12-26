@@ -2,7 +2,7 @@
 
 let express = require('express');
 let bodyParser = require('body-parser');
-let Router = require('universal-node-router');
+let Router = require('universal-node-router/dist');
 
 // here we set the method that will enable the routing
 let router = new Router(__dirname);

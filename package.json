@@ -9,11 +9,11 @@
   "author": "gaspaonrocks",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.1",
-    "express": "^4.15.4",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
     "faker": "^4.1.0",
-    "sequelize": "^4.10.0",
-    "sqlite3": "^3.1.11",
-    "universal-node-router": "^0.2.5"
+    "sequelize": "^4.28.6",
+    "sqlite3": "^3.1.13",
+    "universal-node-router": "0.3.4"
   }
 }
